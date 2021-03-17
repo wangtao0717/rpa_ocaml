@@ -361,6 +361,13 @@ let writeArray_to_file file messageArray =
     close_out oc; 
   ;;
 
+let read_whole_file filename =
+  let ic = open_in_bin filename in
+    let s = really_input_string ic ((in_channel_length ic)-1) in
+      close_in ic;
+      s;
+;;
+
 let addArray_to_file file messageArray = 
   let beforemessage = read_whole_file file in
     let oc = open_out file in
@@ -372,12 +379,7 @@ let addArray_to_file file messageArray =
       close_out oc; 
 ;;
 
-let read_whole_file filename =
-  let ic = open_in_bin filename in
-    let s = really_input_string ic ((in_channel_length ic)-1) in
-      close_in ic;
-      s;
-;;
+
 
 let writeArray_to_csv csvfile messageArray =
   let oc = open_out csvfile in 
