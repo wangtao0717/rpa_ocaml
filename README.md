@@ -114,7 +114,7 @@ read|element_identifier (page = web page)(or x1, y1, x2, y2):target_range|fetch 
 snap|element_identifier (page = web page):String  filename:String|save screenshot to file
 load|filename:String|load & return file content
 dump|text:String  filename:String|save text to file
-write|text:String  filename:Stringappend text to file
+write|text:String  filename:String|append text to file
 ask|text_to_prompt(optional):String   ()|ask & return user input
 
 >_to wait for an element to appear until timeout() value, use hover(). to drag-and-drop, [you can do this](https://github.com/tebelorg/RPA-Python/issues/58#issuecomment-570778431)_
