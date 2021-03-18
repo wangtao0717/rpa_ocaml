@@ -24,7 +24,7 @@ struct
   let bool_to_UpString bool = 
     match bool with 
     |true ->"True"
-    |false -> "False"
+    |false -> ""
   ;;
 
   let r = Py.import "rpa";;
