@@ -8,16 +8,16 @@ let weather = [|[|"Date"; "High_temperature"; "Low_temperature"; "Wind_speed";"W
 let link_to_web = 
     Rpa_ocaml.init false true;
     Rpa_ocaml.url "https://www.bbc.com/weather";
-    Rpa_ocaml.wait ~time:15.0 ;
+    Rpa_ocaml.wait ~time:15.0 ();
 ;;
  
 
 let find_weather city = 
     Rpa_ocaml.type_text (Element "ls-c-search__input-label") city;
     Rpa_ocaml.click (Element "Search for a location");
-    Rpa_ocaml.wait ~time:8.0;
+    Rpa_ocaml.wait ~time:8.0 (); 
     Rpa_ocaml.click (Element "ls-o-location ls-o-location--dark gel-pica");
-    Rpa_ocaml.wait ~time:15.0;
+    Rpa_ocaml.wait ~time:15.0 ();
     Rpa_ocaml.snap "page" ("result_"^city^".png");
     
 ;;
