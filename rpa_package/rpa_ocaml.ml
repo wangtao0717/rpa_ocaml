@@ -9,7 +9,7 @@ struct
 
   let () = Py.initialize ();;
 
-  type taget =
+  type target =
     | Coordinate of int * int
     | Element of string
   ;;  
