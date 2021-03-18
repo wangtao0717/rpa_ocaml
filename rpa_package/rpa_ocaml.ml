@@ -14,7 +14,7 @@ struct
     | Element of string
   ;;  
 
-  type taget_range =
+  type target_range =
     | Range of int * int * int* int
     | Element_range of string
   ;; 
@@ -34,9 +34,12 @@ struct
   let init ~visual_automation  ~chrome_browser =
     let visual_automation = (bool_to_UpString visual_automation) in
     let chrome_browser = (bool_to_UpString chrome_browser) in
-    Py.Module.get_function r "init" (Array.map [|visual_automation;chrome_browser|] Py.String.of_string);
-    ()
+    Py.Module.get_function r "init" (Array.map 
+        [|visual_automation; chrome_browser|]
+          Py.String.of_string);
+    ();
   ;;
+  
 (*close TagUI, Chrome browser, SikuliX *)
   let close () = Py.Module.get_function r "close" [||];();;
 
@@ -168,7 +171,7 @@ struct
     ();;
 
   (**ask & return user input *)
-  let ask ?text_to_prompt = 
+  let ask ?text_to_prompt () = 
     let text_to_prompt = match text_to_prompt with 
     |None -> ""
     |Some x -> x in
