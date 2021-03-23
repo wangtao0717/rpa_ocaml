@@ -3,6 +3,11 @@ open Core
 open Py
 open Base
 
+let () = Rpa_ocaml.init true true
+let data = Rpa_ocaml.read_whole_file "weather_result.csv";;
+let () = printf "%s\n" data
+
+
 let link_to_web = 
     Rpa_ocaml.init true true;
     Rpa_ocaml.url "https://mail.google.com/";
@@ -47,18 +52,18 @@ let link_to_log_web =
 ;;
 
 let log_out =
-  Py.Module.get_function r "click" [|(Py.String.of_string "//*[@id=\"gb\"]/div[2]/div[3]/div[1]/div[2]/div/a/img")|];
-  Py.Module.get_function r "wait" [|(Py.Float.of_float 3.0)|];
-  Py.Module.get_function r "click" [|(Py.String.of_string "//*[@id=\"gb_71\"]")|];
-  Py.Module.get_function r "wait" [|(Py.Float.of_float 3.0)|];
-  Py.Module.get_function r "click" [|(Py.String.of_string "//*[@id=\"view_container\"]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div/div/ul/li[3]/div/div/div[2]")|];
-  Py.Module.get_function r "wait" [|(Py.Float.of_float 3.0)|];
-  Py.Module.get_function r "click" [|(Py.String.of_string "//*[@id=\"profileIdentifier\"]")|];
-  Py.Module.get_function r "wait" [|(Py.Float.of_float 3.0)|];
-  Py.Module.get_function r "click" [|(Py.String.of_string "//*[@id=\"yDmH0d\"]/div[5]/div/div[2]/div[3]/div[1]/span")|];
+  Rpa_ocaml.click (Element "//*[@id=\"gb\"]/div[2]/div[3]/div[1]/div[2]/div/a/img");
+  Rpa_ocaml.wait ~time:3.0 ();
+  Rpa_ocaml.click (Element "//*[@id=\"gb_71\"]");
+  Rpa_ocaml.wait ~time:3.0 ();
+  Rpa_ocaml.click (Element "//*[@id=\"view_container\"]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div/div/ul/li[3]/div/div/div[2]");
+  Rpa_ocaml.wait ~time:3.0 ();
+  Rpa_ocaml.click (Element "//*[@id=\"profileIdentifier\"]");
+  Rpa_ocaml.wait ~time:3.0 ();
+  Rpa_ocaml.click (Element "//*[@id=\"yDmH0d\"]/div[5]/div/div[2]/div[3]/div[1]/span");
 ;;
 
 
 let close_window = 
-    Py.Module.get_function r "close" [||]
+    Rpa_ocaml.close()
 ;;
