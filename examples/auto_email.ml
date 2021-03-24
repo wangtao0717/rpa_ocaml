@@ -4,9 +4,6 @@ open Py
 open Base
 
 let () = Rpa_ocaml.init true true
-let data = Rpa_ocaml.read_whole_file "weather_result.csv";;
-let () = printf "%s\n" data
-
 
 let link_to_web = 
     Rpa_ocaml.init true true;
@@ -29,6 +26,9 @@ let template name grade= "Dear "^name^",\n"^
 
 
 let link_to_log_web = 
+  while ((Rpa_ocaml.exist "//*[@id=\"identifierId\"]")==false) do 
+      Rpa_ocaml.wait ~time:1.0 ();
+  done;
   Rpa_ocaml.type_text (Element "//*[@id=\"identifierId\"]") user_account;
   Rpa_ocaml.click (Element "//*[@id=\"identifierNext\"]/div/button/div[2]");
   Rpa_ocaml.wait ~time:15.0 ();
